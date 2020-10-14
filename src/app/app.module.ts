@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainTableComponent } from './components/main-table/main-table.component';
 import { SpreadTableComponent } from './components/spread-table/spread-table.component';
 import { DataService } from './services/data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DataService } from './services/data.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

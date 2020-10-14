@@ -9,8 +9,8 @@ export class DataService {
 
   }
 
- getPrice() {
-  return this.httpClient.get<any>('https://api.binance.com/api/v3/ticker/price?symbol=ICXUSDT');
+ getData() {
+  return this.httpClient.get<any>('https://raw.githubusercontent.com/spreadzp/big-data-table/master/data.json');
 
  }
 }
