@@ -1,31 +1,40 @@
 table {
   width: 100%;
 }
+
 .example-container {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  max-height: 500px;
-  min-width: 300px;
+  max-height    : 500px;
+  min-width     : 300px;
 }
 
 .mat-table {
-  overflow: auto;
+  overflow  : auto;
   max-height: 500px;
 }
 
 .mobile-label {
   display: none;
 }
+
 mat-header-cell {
   font: italic 1.2em "Fira Sans", serif;
 }
-mat-row:nth-child(even) {background: #CCC}
-mat-row:nth-child(odd) {background: #FFF}
+
+mat-row:nth-child(even) {
+  background: #CCC
+}
+
+mat-row:nth-child(odd) {
+  background: #FFF
+}
+
 @media(max-width: 600px) {
   .mobile-label {
-    width: 80px;
-    display: inline-block;
-        font-weight: bold;
+    width      : 80px;
+    display    : inline-block;
+    font-weight: bold;
   }
 
   .mat-header-row {
@@ -34,14 +43,16 @@ mat-row:nth-child(odd) {background: #FFF}
 
   .mat-row {
     flex-direction: column;
-    align-items: start;
-    padding: 8px 24px;
+    align-items   : start;
+    padding       : 8px 24px;
   }
 }
 
 *:first-of-type {
   padding-left: 0px;
 }
+
 span.mobile-label:hover {
-  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform           : scale(1.5);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

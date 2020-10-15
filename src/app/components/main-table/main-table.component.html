@@ -1,7 +1,8 @@
 <mat-card-title>Business Data</mat-card-title>
 <br />
 <div class="example-container mat-elevation-z8">
-  <mat-table *ngIf="showTable" #table [class.isMobile]="isMobile" [dataSource]="dataTable" class="mat-elevation-z8">
+  <mat-table *ngIf="showTable" #table [class.isMobile]="isMobile" [dataSource]="activePageDataChunk"
+    class="mat-elevation-z8">
     <ng-container *ngFor="let columnName of columnNames; let i = index" matColumnDef={{columnName}}>
       <mat-header-cell *matHeaderCellDef> {{columnName}} </mat-header-cell>
       <mat-cell *matCellDef="let ticket">
@@ -12,4 +13,7 @@
     <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
     <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
   </mat-table>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChanged($event)">
+  </mat-paginator>
 </div>
