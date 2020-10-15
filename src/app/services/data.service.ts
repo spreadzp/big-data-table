@@ -4,13 +4,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-
+sourceUrl = 'https://raw.githubusercontent.com/spreadzp/big-data-table/master/data.json';
   constructor(private httpClient: HttpClient) {
 
   }
 
  getData() {
-  return this.httpClient.get<any>('https://raw.githubusercontent.com/spreadzp/big-data-table/master/data.json');
+  return this.httpClient.get<any>(this.sourceUrl);
 
+ }
+ getMetaData() {
+  return this.httpClient.get<any>(this.sourceUrl);
  }
 }

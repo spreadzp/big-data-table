@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainTableComponent } from './components/main-table/main-table.component';
 import { SpreadTableComponent } from './components/spread-table/spread-table.component';
 import { DataService } from './services/data.service';
-import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +19,13 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
+  exports: [
+    MatTableModule
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [DataService],
   bootstrap: [AppComponent]
 })
