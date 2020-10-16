@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainTableComponent } from './components/main-table/main-table.component';
-
+import {MainTableComponent} from './components/main-table/main-table.component';
 
 const routes: Routes = [
-  {path: '', component: MainTableComponent}
+    {
+        path: '',
+        component: MainTableComponent
+
+    },
+    {
+        path: '**',
+        redirectTo: '/'
+    }
 ];
 
 @NgModule({

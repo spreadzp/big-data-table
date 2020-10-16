@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-main-table',
@@ -20,7 +20,7 @@ export class MainTableComponent implements OnInit {
   pageEvent: PageEvent;
   activePageDataChunk = [];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getData().subscribe((data) => {
@@ -39,5 +39,11 @@ export class MainTableComponent implements OnInit {
       const secondCut = firstCut + e.pageSize;
       this.activePageDataChunk = this.dataTable.slice(firstCut, secondCut);
     }
+  }
+
+  combineMetric(rowData: any[], index: number) {
+    return (this.columns[index].type === 'metric' && this.columns[index].metricType === 'money')
+      ? `${rowData[index]} ${this.columns[index].currency}`
+      : rowData[index];
   }
 }

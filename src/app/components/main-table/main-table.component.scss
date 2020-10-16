@@ -2,16 +2,9 @@ table {
   width: 100%;
 }
 
-.example-container {
-  display       : flex;
-  flex-direction: column;
-  max-height    : 500px;
-  min-width     : 300px;
-}
-
-.mat-table {
-  overflow  : auto;
-  max-height: 500px;
+.mat-table:first-of-type {
+  overflow: auto;
+  padding-left: 2px;
 }
 
 .mobile-label {
@@ -19,21 +12,28 @@ table {
 }
 
 mat-header-cell {
-  font: italic 1.2em "Fira Sans", serif;
+  font: italic 1em "Fira Sans", serif;
 }
 
 mat-row:nth-child(even) {
-  background: #CCC
+  background: #ccc;
 }
 
 mat-row:nth-child(odd) {
-  background: #FFF
+  background: #fff;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 813px) {
+  mat-header-cell,
+  mat-cell {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 600px) {
   .mobile-label {
-    width      : 80px;
-    display    : inline-block;
+    width: 80px;
+    display: inline-block;
     font-weight: bold;
   }
 
@@ -43,8 +43,8 @@ mat-row:nth-child(odd) {
 
   .mat-row {
     flex-direction: column;
-    align-items   : start;
-    padding       : 8px 24px;
+    align-items: start;
+    padding: 8px 24px;
   }
 }
 
@@ -53,6 +53,6 @@ mat-row:nth-child(odd) {
 }
 
 span.mobile-label:hover {
-  transform           : scale(1.5);
+  transform: scale(1.5);
   /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

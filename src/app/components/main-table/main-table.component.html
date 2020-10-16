@@ -1,19 +1,22 @@
-<mat-card-title>Business Data</mat-card-title>
-<br />
-<div class="example-container mat-elevation-z8">
-  <mat-table *ngIf="showTable" #table [class.isMobile]="isMobile" [dataSource]="activePageDataChunk"
-    class="mat-elevation-z8">
-    <ng-container *ngFor="let columnName of columnNames; let i = index" matColumnDef={{columnName}}>
-      <mat-header-cell *matHeaderCellDef> {{columnName}} </mat-header-cell>
-      <mat-cell *matCellDef="let ticket">
-        <span class="mobile-label">{{columnName}}:</span>
-        {{ ticket[i] }}
-      </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
-  </mat-table>
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-    (page)="onPageChanged($event)">
-  </mat-paginator>
-</div>
+<mat-card>
+  <div class="">
+    <div class="spinner-container" *ngIf="!showTable">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-table *ngIf="showTable" #table [class.isMobile]="isMobile" [dataSource]="activePageDataChunk"
+      class="mat-elevation-z8">
+      <ng-container *ngFor="let columnName of columnNames; let i = index" matColumnDef={{columnName}}>
+        <mat-header-cell *matHeaderCellDef> {{columnName}} </mat-header-cell>
+        <mat-cell *matCellDef="let rowData">
+          <span class="mobile-label">{{columnName}}:</span>
+          {{combineMetric(rowData, i) }}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnNames" color="primary"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
+    </mat-table>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChanged($event)">
+    </mat-paginator>
+  </div>
+</mat-card>
