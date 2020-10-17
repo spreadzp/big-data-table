@@ -17,10 +17,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainTableComponent } from './components/main-table/main-table.component';
+import { TotalTableComponent } from './components/total-table/total-table.component';
+
 import { DataService } from './services/data.service';
+import { BaseTableComponent } from './components/base-table/base-table.component';
 
 @NgModule({
-  declarations: [AppComponent, MainTableComponent],
+  declarations: [AppComponent, MainTableComponent, TotalTableComponent, BaseTableComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

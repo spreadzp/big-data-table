@@ -1,0 +1,24 @@
+<mat-card>
+  <div class="">
+    <div class="spinner-container" *ngIf="!showTable">
+      <mat-spinner></mat-spinner>
+    </div>
+    <mat-table *ngIf="showTable" #table [class.isMobile]="isMobile" [dataSource]="activePageDataChunk"
+      class="mat-elevation-z8">
+      <ng-container *ngFor="let columnName of columnNames; let i = index" matColumnDef={{columnName}}>
+        <mat-header-cell *matHeaderCellDef> {{columnName}} </mat-header-cell>
+        <mat-cell *matCellDef="let rowData">
+          <span class="mobile-label">{{columnName}}:</span>
+          {{combineMetric(rowData, i) }}
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnNames" color="primary"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
+    </mat-table>
+    <mat-paginator *ngIf="paginationOptions.showPaginator" [length]="paginationOptions.length"
+     [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+      (page)="onPageChanged($event)">
+    </mat-paginator>
+  </div>
+</mat-card>
+
