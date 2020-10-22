@@ -17,8 +17,8 @@ export class MainTableComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.subscribe((l) => {
-      const tableData = l.TableState.tableData;
+    this.store.subscribe((storeData) => {
+      const tableData = storeData.TableState.tableData;
       if (tableData && tableData.meta) {
         this.paginationOptions.length = tableData.data.length;
         this.paginationOptions.pageSize = 10;
