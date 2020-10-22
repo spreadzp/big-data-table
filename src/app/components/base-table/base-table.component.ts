@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { IPaginator } from '../../shared/interfaces/paginator.interface';
-import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-base-table',
@@ -11,32 +9,25 @@ import { DataService } from '../../services/data.service';
 export class BaseTableComponent implements OnInit {
   dataTable = null;
   columns = null;
-  columnNames = null;
   isMobile = false;
   showTable = false;
   length = 0;
-  pageSize = 10;
-  pageSizeOptions = [10];
-  pageEvent: PageEvent;
-  activePageDataChunk = [];
-  @Input() allData = {} as any;
-  @Input() paginationOptions: IPaginator;
+  activePageDataChunk = null;
 
-  constructor(private dataService: DataService) { }
+  @Input() allData = null;
+  @Input() paginationOptions: IPaginator;
+  @Input() metaData = {} as any;
+  @Input() columnNames = null;
+
+  constructor() { }
 
   ngOnInit(): void {
-    console.log("BaseTableComponent -> ngOnInit -> this.allData", this.allData)
-    if (this.allData) {
-
-      this.dataTable = this.allData.data;
+    if (this.allData && this.allData.length > 0) {
+      this.dataTable = this.allData;
       this.length = this.dataTable.length;
-      this.columns = this.allData?.meta.columns;
-      this.columnNames = this.columns.map((item) => item.title);
-      this.activePageDataChunk = this.dataTable.slice(0, this.pageSize);
+      this.activePageDataChunk = this.allData.slice(0, this.paginationOptions.pageSize);
       this.showTable = this.length > 0;
     }
-
-
   }
 
   onPageChanged(e) {
@@ -48,11 +39,9 @@ export class BaseTableComponent implements OnInit {
   }
 
   combineMetric(rowData: any[], index: number) {
-    return (this.columns[index].type === 'metric' && this.columns[index].metricType === 'money')
-      ? `${rowData[index]} ${this.columns[index].currency}`
+    return (this.metaData[index].type === 'metric' && this.metaData[index].metricType === 'money')
+      ? `${rowData[index]} ${this.metaData[index].currency}`
       : rowData[index];
   }
 
 }
-
-

@@ -16,9 +16,8 @@
       <mat-row *matRowDef="let row; columns: columnNames"></mat-row>
     </mat-table>
     <mat-paginator *ngIf="paginationOptions.showPaginator" [length]="paginationOptions.length"
-     [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
+      [pageSize]="paginationOptions.pageSize" [pageSizeOptions]="paginationOptions.pageSizeOptions"
       (page)="onPageChanged($event)">
     </mat-paginator>
   </div>
 </mat-card>
-

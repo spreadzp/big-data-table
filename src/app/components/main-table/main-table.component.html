@@ -1,2 +1,2 @@
-<app-base-table *ngIf="allData" [allData]="allData"
- [paginationOptions]="paginationOptions"></app-base-table>
+<app-base-table *ngIf="showTable" [allData]="allData" [paginationOptions]="paginationOptions"
+  [columnNames]="headerNames" [metaData]="metaData"></app-base-table>

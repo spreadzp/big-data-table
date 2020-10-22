@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { Store } from '@ngxs/store';
 import { IPaginator } from '../../shared/interfaces/paginator.interface';
 
 @Component({
@@ -8,19 +8,27 @@ import { IPaginator } from '../../shared/interfaces/paginator.interface';
   styleUrls: ['./main-table.component.scss'],
 })
 export class MainTableComponent implements OnInit {
-  allData = null;
+  allData = {} as any;
   paginationOptions = {} as IPaginator;
+  headerNames = null;
+  showTable = false;
+  metaData = null;
 
-  constructor(private dataService: DataService) { }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.dataService.getData().subscribe((data) => {
-      this.allData = data;
-      this.paginationOptions.length = data.data.length;
-      this.paginationOptions.pageSize = 10;
-      this.paginationOptions.showPaginator = true;
-      this.paginationOptions.pageSizeOptions = [10];
+    this.store.subscribe((l) => {
+      const tableData = l.TableState.tableData;
+      if (tableData && tableData.meta) {
+        this.paginationOptions.length = tableData.data.length;
+        this.paginationOptions.pageSize = 10;
+        this.paginationOptions.showPaginator = true;
+        this.paginationOptions.pageSizeOptions = [10];
+        this.allData = tableData.data;
+        this.showTable = true;
+        this.metaData = tableData.meta.columns;
+        this.headerNames = tableData.meta.columns.map((item) => item.title);
+      }
     });
   }
-
 }

@@ -13,6 +13,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +24,7 @@ import { TotalTableComponent } from './components/total-table/total-table.compon
 
 import { DataService } from './services/data.service';
 import { BaseTableComponent } from './components/base-table/base-table.component';
+import { TableState } from './state/table.state';
 
 @NgModule({
   declarations: [AppComponent, MainTableComponent, TotalTableComponent, BaseTableComponent],
@@ -40,6 +44,9 @@ import { BaseTableComponent } from './components/base-table/base-table.component
     MatPaginatorModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
+    NgxsModule.forRoot([TableState]),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsFormPluginModule.forRoot(),
   ],
   providers: [DataService],
   bootstrap: [AppComponent],

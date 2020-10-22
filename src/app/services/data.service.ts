@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngxs/store';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  sourceUrl = 'https://raw.githubusercontent.com/spreadzp/big-data-table/master/data.json';
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private store: Store) { }
 
   getData() {
-    return this.httpClient.get<any>(this.sourceUrl);
+    return this.httpClient.get<any>(environment.dataSource);
   }
 }
